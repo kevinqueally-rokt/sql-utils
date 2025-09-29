@@ -7,15 +7,17 @@ from sqlalchemy.engine import create_engine
 
 """
     This function creates a connection to the trino DB.
+    
+    Args:
+        username (str): The username to authenticate with.
 """
-def create_sql_connection():
+def create_sql_connection(username: str):
     
     # an engine for querying the db
     print("Beginning SQL connection...")
 
     try:
         host = "trino-gateway-us-west-2.roktinternal.com"
-        username = "levi.leach"
         catalog = "aws_legacy_datalake"
         engine = create_engine(f"trino://{username}@{host}:443/{catalog}?externalAuthentication=true")
         print("SQL connection successful")
